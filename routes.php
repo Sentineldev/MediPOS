@@ -7,5 +7,7 @@ post('/','Views/login.php');
 
 get('/pos','Views/post.php');
 
-any('/404','Views/404.php');
+
+
+#any('/404','Views/404.php');
 ?>
