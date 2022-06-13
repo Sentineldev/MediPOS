@@ -1,5 +1,10 @@
 <?php
 
+
+
+
+
+
 #Obtener los datos cuando se envie una peticion de post
 if(isset($_POST) && sizeof($_POST)>0){
     $username = $_POST['username'];
@@ -23,7 +28,13 @@ if(isset($_POST) && sizeof($_POST)>0){
     <title>Login</title>
     <link rel="stylesheet" href="./bootstrap-5.2.0-beta1-dist/css/bootstrap.css">
     <link rel="stylesheet" href="./CSS/login.css">
+    <style>
+        <?php
+        include_once('./bootstrap/css/bootstrap.css');
+        ?>
+    </style>
 </head>
+
 <body>
     <div class="img-container">
         <div class="black-screen"></div>
