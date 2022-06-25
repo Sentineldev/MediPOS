@@ -1,0 +1,29 @@
+
+nav{
+    background-color: #2DA189!important;
+
+}
+.navbar-brand{
+    color: white !important;
+}
+.nav-link{
+    color: white !important;
+}
+.card-header{
+    background-color: #2F9F83 !important;
+    color: white !important;
+}
+
+.logout-link{
+    transition: 0.2s;
+    border: 1px solid white;
+    box-shadow: 0px 0px 2px white;
+    padding: 0.2rem 2rem;
+}
+.logout-link:hover{
+    transition: 0.2s;
+    background-color: #69C16E;
+    color: white;
+    box-shadow: 0px 0px 2px #69C16E;
+    border-color: #69C16E;
+}
