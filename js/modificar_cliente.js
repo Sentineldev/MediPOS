@@ -94,14 +94,19 @@ async function mostrarClienteNatural(identificacion){
         </div>
         <div class="col-md-4">
             <label for="sexo" class="form-label m-1">Sexo</label>
-            <select value="${client.sexo}" name="sexo" id="sexo" class="form-select p-2">
-                <option value="Masculino">Masculino</option>
-                <option value="Femenino">Femenino</option>
+            <select name="sexo" id="sexo" class="form-select p-2">
+            <option value="${client.sexo}">${client.sexo}</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
             </select>
         </div>
         <div class="col-md-4">
-            <label for="nacionalidad" class="form-label m-1">Nacionalidad</label>
-            <input value="${client.nacionalidad}" type="text" name="nacionalidad" id="valid-name" class="form-control p-2" required>
+            <label for="nacionalidad" class="form-label m-1">Nacioanlidad</label>
+            <select name="nacionalidad" id="sexo" class="form-select p-2">
+                <option value="${client.nacionalidad}">${client.nacionalidad}</option>
+                <option value="Venezolano">Venezolano</option>
+                <option value="Extranjero">Extranjero</option>
+            </select>
         </div>
         <div class="col-md-4">
             <label for="correo" class="form-label m-1">Correo</label>
