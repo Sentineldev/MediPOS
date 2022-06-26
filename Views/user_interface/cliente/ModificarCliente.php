@@ -90,10 +90,20 @@ include('./Classes/ClienteJuridico.php');
     </section>
     
 </body>
-<script>
+
+<script type="module">
     <?php
     include('boostrap/js/bootstrap.bundle.js');
-    include('js/modificar_cliente.js');
+    ?>
+</script>
+<script type="module">
+    <?php
+    include('js/clientes/modificar_cliente.js');
+    ?>
+</script>
+<script type="module">
+    <?php
+    include('js/api.js');
     ?>
 </script>
 </html>

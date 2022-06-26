@@ -40,7 +40,7 @@ tipo_cliente.addEventListener('change',()=>{
         </div>
         
         <div class="col-md-4">
-            <label for="nacionalidad" class="form-label m-1">Nacioanlidad</label>
+            <label for="nacionalidad" class="form-label m-1">Nacionalidad</label>
             <select name="nacionalidad" id="sexo" class="form-select p-2">
                 <option value="Venezolano">Venezolano</option>
                 <option value="Extranjero">Extranjero</option>

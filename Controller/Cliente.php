@@ -38,6 +38,22 @@ class ClienteController{
     public static function ObtenerClienteJuridico($identificacion){
         return ClienteModel::ObtenerClienteJuridico($identificacion);
     }
+    #elimina un cliente natural
+    public static function EliminarClienteNatural($identificacion){
+        return ClienteModel::EliminarClienteNatural($identificacion);
+    }
+    #elimina un cliente juridico
+    public static function EliminarClienteJuridico($identificacion){
+        return ClienteModel::EliminarClienteJuridico($identificacion);
+    } 
+    #Obtiene la cantidad de clientes que existe en el sistema de un tipo determinado
+    public static function ObtenerCantidadClientes($tipo_cliente){
+        return ClienteModel::ObtenerCantidadClientes($tipo_cliente);
+    }
+    #Obtiene la cantidad de clientes en un rango determinado con un tipo especific para separarlos en paginas.
+    public static function ObtenerClientesPorPagina($tipo_cliente,$pagina){
+        return ClienteModel::ObtenerClientesPorPagina($tipo_cliente,$pagina);
+    }
 }
 
 

@@ -1,3 +1,5 @@
+import { obtenerClienteNatural,obtenerClienteJuridico } from "../js/api.js";
+
 const tipo_cliente = document.querySelector("#tipo_cliente");
 const identification_container = document.querySelector('#identification-container')
 const find_button = document.querySelector('#find-button')
@@ -47,29 +49,25 @@ find_button.addEventListener('click',async()=>{
     }
 
     const button_submit = document.querySelector("#button-submit")
-    button_submit.addEventListener('click',()=>{
-        form_container.submit()
-    })
+    if(button_submit != null){
+        button_submit.addEventListener('click',()=>{
+            form_container.submit()
+        })
+    }
 
 })
 
-//Hace la peticion al servidor para obtener los datos del cliente
-async function obtenerClienteNatural(identificacion){
-    let data = await fetch(`http://localhost/MediPOS/cliente/obtener_cliente_natural/${identificacion}`)
-    data = await data.json()
-    return data
-}
-
-//Hace la peticion al servidor para obtener los datos del cliente
-async function obtenerClienteJuridico(identificacion){
-    let data = await fetch(`http://localhost/MediPOS/cliente/obtener_cliente_juridico/${identificacion}`)
-    data = await data.json()
-    return data
-}
+//Muestra los datos del cliente, con el formato de cliente natural
 async function mostrarClienteNatural(identificacion){
 
     const client =  await obtenerClienteNatural(identificacion)
-    console.log(client.direccion)
+    if(client == null){
+        return `
+        <div class="  alert alert-danger col-md-10 mt-4 mb-0 m-1" role="alert">
+            El usuario no existe!
+        </div>
+        `
+    }
 
     return `
         <div class="col-md-4">
@@ -123,9 +121,17 @@ async function mostrarClienteNatural(identificacion){
         `
 }
 
-//Obtiene los datos de la base de datos y los muestra en el formulario para ser modificados.
+//Muestra los datos del cliente, con el formato de cliente juridico
 async function mostrarClienteJuridico(identificacion){
     const client = await obtenerClienteJuridico(identificacion)
+
+    if(client == null){
+        return `
+        <div class="  alert alert-danger col-md-10 mt-4 mb-0 m-1" role="alert">
+            El usuario no existe!
+        </div>
+        `
+    }
     return `
 
     <div class="col-md-4">

@@ -7,6 +7,7 @@ include('./Classes/ClienteNatural.php');
 include('./Classes/ClienteJuridico.php');
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -105,7 +106,7 @@ include('./Classes/ClienteJuridico.php');
 <script>
     <?php
     include('boostrap/js/bootstrap.bundle.js');
-    include('js/registro_cliente.js');
+    include('js/clientes/registro_cliente.js');
     ?>
 </script>
 </html>
