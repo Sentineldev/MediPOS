@@ -1,5 +1,5 @@
 #main{
-    height:92.8%;
+    height:93%;
     position: relative;
 }
 #content{
@@ -14,8 +14,11 @@
     color: white !important;
 }
 
-.side-bar-header{
-font-size:1.6rem !important;
+.side-bar-container-header{
+    font-size: 1rem !important;
+}
+.side-bar-container-p{
+    font-size: 0.9rem !important;
 }
 
 #separator{
@@ -52,7 +55,7 @@ font-size:1.6rem !important;
     border-radius: 0.3rem;
 }
 tr,td,th{
-    padding: 0.8rem 0.8rem !important;
+    padding: 0.5rem 1rem !important;
     border: none;
 }
 th{

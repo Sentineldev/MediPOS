@@ -23,11 +23,9 @@ async function actualizarNroPaginas(tipo_cliente){
     let cantidad_clientes = await obtenerCantidadClientes(tipo_cliente)
     cantidad_clientes = Math.ceil(cantidad_clientes.cantidad/5)
     let template = ``
-    let str = `<li class="page-item"><a class="page-link" href="#">Previous</a></li>`
     for(let i  = 0;i<cantidad_clientes;i++){
         template = template + `<li class="page-item"><a class="page-link" href="#">${i+1}</a></li>`
     }
-    template = template
     return template
 }
 //asigna el evento que al hacer click en el numero de pagina se actualice la tabla.
@@ -59,7 +57,6 @@ async function actualizarTablaClientesNaturales(tipo_cliente,pagina){
 
 
     let data = await obtenerClientesPorPagina(tipo_cliente,pagina)
-    console.log(data)
     let template = ``
     data.forEach(element => {
         template = 

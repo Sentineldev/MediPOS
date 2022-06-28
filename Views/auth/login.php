@@ -1,6 +1,5 @@
 <?php
 include_once('./Controller/Usuario.php');
-
 $_SESSION['url'] = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/MediPOS/";
 $_SESSION['folder'] = $_SERVER['DOCUMENT_ROOT']."/MediPOS/".""
 ?>
