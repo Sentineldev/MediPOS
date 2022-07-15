@@ -102,5 +102,10 @@ if(isset($_POST) && sizeof($_POST) > 0){
     include('boostrap/js/bootstrap.bundle.js');
     ?>
 </script>
+<script type="module">
+    <?php
+    include('js/productos/registrar_producto.js');
+    ?>
+</script>
 
 </html>

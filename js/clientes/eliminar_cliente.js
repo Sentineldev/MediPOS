@@ -111,3 +111,4 @@ async function mostrarClienteNatural(identificacion){
 }
 
 
+window.onload = e => tipo_cliente.focus()

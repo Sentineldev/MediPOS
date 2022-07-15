@@ -58,3 +58,7 @@ function formModifyUser(user){
     </div>
     `
 }
+
+window.onload = e =>{
+    const identificacion = document.querySelector("#identificacion").focus()
+}

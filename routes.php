@@ -13,8 +13,8 @@ post('/','Views/auth/login.php');
 
 
 #urls para la vista principal al ingresar!
-get("/home",'Views/user_interface/home.php');
-get("/logout",'Views/auth/logout.php');
+get("/user/home",'Views/user_interface/home.php');
+get("/user/logout",'Views/auth/logout.php');
 
 #<-----urls para las funcionalidades del cliente----->#
 
@@ -62,9 +62,9 @@ post("/producto/eliminar","Views/user_interface/producto/EliminarProducto.php");
 get("/producto/listar","Views/user_interface/producto/ListarProductos.php");
 
 
-#<-----urls para las funcionalidades de los metodos de pago----->#
+#<-----urls para las funcionalidades de los metodos de lotes----->#
 
-#vista de las funcionalidades de metodos de pago
+#vista de las funcionalidades de metodos de lotes
 
 get("/lote/registrar","Views/user_interface/lote/RegistrarLote.php");
 post("/lote/registrar","Views/user_interface/lote/RegistrarLote.php");
@@ -76,6 +76,13 @@ get("/lote/eliminar","Views/user_interface/lote/EliminarLote.php");
 post("/lote/eliminar","Views/user_interface/lote/EliminarLote.php");
 
 get("/lote/listar","Views/user_interface/lote/ListarLotes.php");
+
+
+#<-----urls para las funcionalidades de los metodos de lotes----->#
+
+#vista de las funcionalidades de metodos de lotes
+
+get('/factura/registrar','Views/user_interface/factura/RegistrarFactura.php');
 
 
 #Direcciones para obtener datos de la API de los clientes

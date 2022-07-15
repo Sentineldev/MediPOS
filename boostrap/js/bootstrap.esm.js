@@ -3,7 +3,6 @@
   * Copyright 2011-2022 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
-import * as Popper from '@popperjs/core';
 
 /**
  * --------------------------------------------------------------------------
@@ -2867,13 +2866,13 @@ class Modal extends BaseComponent {
 
   hide() {
     if (!this._isShown || this._isTransitioning) {
-      return;
+      return 1;
     }
 
     const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$4);
 
     if (hideEvent.defaultPrevented) {
-      return;
+      return 2;
     }
 
     this._isShown = false;

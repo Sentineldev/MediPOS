@@ -27,3 +27,8 @@ nav{
     box-shadow: 0px 0px 2px #69C16E;
     border-color: #69C16E;
 }
+
+
+#date,#time{
+    word-break: break-all;
+}

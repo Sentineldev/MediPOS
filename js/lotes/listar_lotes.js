@@ -38,9 +38,9 @@ async function tablaLotes(pagina){
     </tr>
     `
 
-    let users = await obtenerLotesPorPagina(pagina)
+    let lotes = await obtenerLotesPorPagina(pagina)
     let template = ``
-    users.forEach(element => {
+    lotes.forEach(element => {
         template = 
         template +
         `
@@ -48,8 +48,8 @@ async function tablaLotes(pagina){
             <td>${element.numero_lote}</td>
             <td>${element.codigo_producto}</td>
             <td>${element.descripcion} ${element.presentacion}</td>
-            <td>${element.cantidad}</td>
-            <td>${element.precio}</td>
+            <td>${element.cantidad_lote}</td>
+            <td>${element.precio_lote}</td>
             <td>${element.fecha_entrada}</td>
             <td>${element.fecha_vencimiento}</td>
         </tr>

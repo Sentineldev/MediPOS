@@ -1,0 +1,93 @@
+#factura{
+    height: 100%;
+}
+
+
+
+#primary-column,#secondary-column{
+    display: flex;
+    flex-direction: column;
+}
+
+#amount-container{
+    color: black;
+}
+
+.amount{
+    padding: 0.5rem;
+    margin: 0.3rem 0.8rem;
+    font-size: 1.2rem;
+}
+#codigo_producto{
+    padding: 0.8rem;
+}
+
+.header{
+    border-top-left-radius: 0.4rem;
+}
+.body{
+    flex: 1;
+    background-color: whitesmoke    ;
+}
+.body-data-product{
+    overflow-y: auto;
+    height: 70vh;
+    border: none;
+}
+.body-data-payment{
+    overflow-y: auto;
+    height: 50vh;
+    border: none;
+}
+
+.col-header,.col-body{
+    display: grid;
+    justify-content: center;
+}
+.col-header{
+    padding: 0.3rem !important;
+    margin: 0.5rem;
+}
+.col-body{
+    padding: 0.3rem !important;
+    margin: 0.5rem;
+}
+.col-body span{
+    font-size: 0.8rem;
+    color: rgb(27, 23, 23);
+    word-break: normal;
+}
+
+#btn-add-payment{
+    background-color: white;
+    color: black;
+    padding: 0.8rem !important;
+}
+
+
+.table-item:hover{
+    transition: 0.2s;
+    background-color: #aaaa;
+    cursor: pointer;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: white;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(88, 88, 88, 0.667);
+  } 
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+

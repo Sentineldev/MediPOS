@@ -108,3 +108,4 @@ async function actualizarTablaClientesJuridicos(tipo_cliente,pagina){
     });
     table_body.innerHTML = template
 }
+window.onload = e => tipo_cliente.focus()

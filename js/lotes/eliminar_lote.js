@@ -38,8 +38,8 @@ function productForm(lote){
             <li class="list-group-item">Numero de Lote: ${lote.numero_lote}</li>
             <li class="list-group-item">Descripcion: ${lote.descripcion}</li>
             <li class="list-group-item">Presentacion: ${lote.presentacion}</li>
-            <li class="list-group-item">Cantidad: ${lote.cantidad}</li>
-            <li class="list-group-item">Precio: ${lote.precio}</li>
+            <li class="list-group-item">Cantidad: ${lote.cantidad_lote}</li>
+            <li class="list-group-item">Precio: ${lote.precio_lote}</li>
             <li class="list-group-item">Fecha de Entrada: ${lote.fecha_entrada}</li>
             <li class="list-group-item">Fecha de Vencimiento: ${lote.fecha_vencimiento}</li>
         </ul>
@@ -48,4 +48,8 @@ function productForm(lote){
         </div>
     </div>
     `
+}
+
+window.onload = (e)=>{
+    const num_lote = document.querySelector("#num_lote").focus()
 }

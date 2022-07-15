@@ -40,8 +40,8 @@ function productForm(lote){
             <li class="list-group-item">Codigo del Producto: ${lote.codigo_producto}</li>
             <li class="list-group-item">Descripcion: ${lote.descripcion}</li>
             <li class="list-group-item">Presentacion: ${lote.presentacion}</li>
-            <li class="list-group-item">Cantidad: ${lote.cantidad}</li>
-            <li class="list-group-item">Precio: ${lote.precio}</li>
+            <li class="list-group-item">Cantidad: ${lote.cantidad_lote}</li>
+            <li class="list-group-item">Precio: ${lote.precio_lote}</li>
         </ul>
     </div>
     `
@@ -53,11 +53,11 @@ function loteForm(lote){
     return `
     <div class="col-md-4 w-100 mt-3 mb-2" id="usuario-container">
         <label for="cantidad" class="form-label m-0">Cantidad</label>
-        <input value="${lote.cantidad}" type="text" name="cantidad" id="cantidad" class="form-control p-2" required>
+        <input value="${lote.cantidad_lote}" type="text" name="cantidad" id="cantidad" class="form-control p-2" required>
     </div> 
     <div class="col-md-4 w-100 mb-2" id="clave-container">
         <label for="precio" class="form-label m-0">Precio</label>
-        <input value="${lote.precio}" step="0.01" type="number" name="precio" id="precio" class="form-control p-2" required>
+        <input value="${lote.precio_lote}" step="0.01" type="number" name="precio" id="precio" class="form-control p-2" required>
     </div>
     <div class="col-md-4 w-100 mb-2" id="clave-container">
         <label for="fecha_entrada" class="form-label m-0">Fecha de Entrada</label>
@@ -73,4 +73,8 @@ function loteForm(lote){
         <button id="button-modify"class=" button btn  w-50 mt-4  p-2 border-0">Modificar Lote</button>
     </div>
     `
+}
+
+window.onload = (e)=>{
+    const num_lote = document.querySelector("#num_lote").focus()
 }

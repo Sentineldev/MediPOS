@@ -1,5 +1,5 @@
 #main{
-    height:93%;
+    height:100%;
     position: relative;
 }
 #content{
@@ -56,7 +56,7 @@
 }
 tr,td,th{
     padding: 0.5rem 1rem !important;
-    border: none;
+     border: none;
 }
 th{
     border-bottom: 1px solid rgba(187, 184, 184, 0.933);

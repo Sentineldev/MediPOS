@@ -32,7 +32,7 @@ $_SESSION['folder'] = $_SERVER['DOCUMENT_ROOT']."/MediPOS/".""
                 if(UsuarioController::ExisteUsuario($username,$password)){
                     $user = UsuarioController::ObtenerUsuario($username,$password)->fetch_assoc();
                     $_SESSION['user'] = $user;
-                    header('Location: '.$_SESSION['url']."home");
+                    header('Location: '.$_SESSION['url']."user/home");
                 }                
                 
             }

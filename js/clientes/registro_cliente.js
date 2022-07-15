@@ -95,3 +95,5 @@ tipo_cliente.addEventListener('change',()=>{
         button_container.style.display = "none"
     }
 })
+
+window.onload = e => tipo_cliente.focus()

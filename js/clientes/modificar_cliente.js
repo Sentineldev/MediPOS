@@ -165,3 +165,4 @@ async function mostrarClienteJuridico(identificacion){
     `
 }
 
+window.onload = e => tipo_cliente.focus()

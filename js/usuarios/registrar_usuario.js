@@ -69,3 +69,7 @@ async function mostrarClienteNatural(client){
     </div>
     `
 }
+
+window.onload = e =>{
+    const identificacion = document.querySelector("#identificacion").focus()
+}
