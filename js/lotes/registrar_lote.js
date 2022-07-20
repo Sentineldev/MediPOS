@@ -1,5 +1,5 @@
 import { obtenerProducto } from "../js/api_product.js";
-
+import { checkIfInteger } from "../js/utils.js";
 const form_container = document.querySelector("#form-container")
 const find_button = document.querySelector("#find-button")
 const lote_form = document.querySelector("#lote-form")
@@ -7,14 +7,27 @@ const card_container = document.querySelector("#card-container")
 
 find_button.addEventListener("click",async()=>{
     const codigo_producto = document.querySelector("#codigo_producto").value
-    form_container.onsubmit = e => e.preventDefault()
+    form_container.onsubmit = e => {
+        e.preventDefault()
+        console.log(e)
+    }
     let producto = await obtenerProducto(codigo_producto)
     card_container.innerHTML = productForm(producto)
     if(producto != null){
         lote_form.innerHTML = loteForm()
         const button_register = document.querySelector("#button-register")
         button_register.addEventListener("click",()=>{
-            form_container.submit()
+            const num_lote = document.querySelector("#num_lote")
+            const cantidad = document.querySelector("#cantidad")
+            const precio = document.querySelector("#precio")
+            
+            if(num_lote.value != ""){
+                if(cantidad.value != ""){
+                    if(precio.value != ""){
+                        form_container.submit()
+                    }
+                }
+            }
         })
     }
     else{
@@ -50,7 +63,7 @@ function loteForm(){
     return `
     <div class="col-md-4 w-100 mt-3 mb-2" id="usuario-container">
         <label for="num_lote" class="form-label m-0">Numero de Lote</label>
-        <input type="text" name="num_lote" id="num_lote" class="form-control p-2" required>
+        <input type="number" name="num_lote" id="num_lote" class="form-control p-2" required>
     </div>
     <div class="col-md-4 w-100 mb-2" id="clave-container">
         <label for="cantidad" class="form-label m-0">Cantidad</label>

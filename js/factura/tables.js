@@ -25,7 +25,7 @@ export function product_table_item(producto,cantidad){
     return `
     <div class="row container-fluid p-0 m-0 table-item" data-bs-toggle="modal" data-bs-target="#option-modal">
         <div class="col col-body"><span>${producto.codigo_producto}</span></div>
-        <div class="col col-body"><span>${producto.descripcion}</span></div>
+        <div class="col col-body"><span>${producto.descripcion} - ${producto.presentacion}</span></div>
         <div class="col col-body"><span>${cantidad}</span></div>
         <div class="col col-body"><span>${(parseFloat(producto.precio * cantidad)).toFixed(2)}</span></div>
     </div>
@@ -40,7 +40,6 @@ export function load_payment_table(){
             <button  id="btn-add-payment" type="button" class="btn btn-primary">Ingresar metodo de pago</button>
         </div>
         <div class="row container-fluid p-0 m-0 header bg-dark rounded-0">
-            <div class="col col-header"><span>Entidad</span></div>
             <div class="col col-header"><span>Tipo</span></div>
             <div class="col col-header"><span>Monto</span></div>
         </div>
@@ -55,8 +54,7 @@ export function load_payment_table(){
 export function payment_table_item(payment){
     return `
     <div class="row container-fluid p-0 m-0 table-item">
-        <div class="col col-body"><span>${payment.entidad}</span></div>
-        <div class="col col-body"><span>${payment.tipo_pago}</span></div>
+        <div class="col col-body"><span>${payment.nombre_tipo_pago}</span></div>
         <div class="col col-body"><span>${parseFloat(payment.monto).toFixed(2)}</span></div>
     </div>
     `

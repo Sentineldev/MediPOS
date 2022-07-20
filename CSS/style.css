@@ -11,5 +11,6 @@ html{
 
 body{
     height: 100vh;
+    display: inherit;
     background-color: black;
 }

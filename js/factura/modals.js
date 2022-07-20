@@ -42,19 +42,13 @@ function paymentMethodModal(){
                 <div class="modal-body">
                     <form id="model-form" method="POST">
                         <div class="mb-3">
-                            <select id="select-entity" class="form-select" aria-label="Default select example">
-                                <option selected>Entidad</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
                             <select id="select-type-payment" class="form-select" aria-label="Default select example">
                                 <option selected>Tipo de Pago</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="1">Banco de Venezuela - Debito</option>
+                                <option value="2">Banco de Venezuela - Credito</option>
+                                <option value="3">Solo - Efectivo</option>
+                                <option value="5">Otros - Debito</option>
+                                <option value="6">Otros - Credito</option>
                             </select>
                         </div>
                         <div class="mb-3">

@@ -6,23 +6,37 @@ include('./Controller/Usuario.php');
 if(isset($_POST) && sizeof($_POST)){
     $respuesta = "";
     $identificacion = $_POST['identificacion'];
-
-    if(UsuarioController::EliminarUsuario($identificacion)){
+    $usuario = UsuarioController::ObtenerUsuarioById($identificacion);
+    if ($usuario['rango'] >=  $_SESSION['user']['rango']){
         $respuesta = 
         '
-        <div class="  alert alert-success col-md-10 mt-4 mb-0 m-1" role="alert">
-            Eliminado exitosamente!
+        <div class="  alert alert-danger col-md-10 mt-4 mb-0 m-1" role="alert">
+            No puedes eliminar a alguien con mas rango que tu!
         </div>
         ';
     }
     else{
-        $respuesta = 
-        '
-        <div class="  alert alert-danger col-md-10 mt-4 mb-0 m-1" role="alert">
-            El usuario no se puede eliminar!
-        </div>
-        ';
+        if(UsuarioController::EliminarUsuario($identificacion)){
+            $respuesta = 
+            '
+            <div class="  alert alert-success col-md-10 mt-4 mb-0 m-1" role="alert">
+                Eliminado exitosamente!
+            </div>
+            ';
+            if($usuario['usuario'] == $_SESSION['user']['usuario'] ){
+                header("Location: ".$_SESSION['url']."user/logout");
+            }
+        }
+        else{
+            $respuesta = 
+            '
+            <div class="  alert alert-danger col-md-10 mt-4 mb-0 m-1" role="alert">
+                El usuario no se puede eliminar!
+            </div>
+            ';
+        }
     }
+    
 }
 
 
@@ -59,7 +73,7 @@ if(isset($_POST) && sizeof($_POST)){
                     <div class="container-fluid m-0 w-50 p-1 ">
                         <div class="col-md-4 w-100">
                             <label for="identificacion" class="form-label m-1">Cedula</label>
-                            <input type="text" name="identificacion" id="identificacion" class="form-control p-2" required>
+                            <input maxlength="32" type="text" name="identificacion" id="identificacion" class="form-control p-2" required>
                         </div>
                         <div id="button-container" class="">
                             <button id="find-button"class=" button btn  w-50 mt-4  p-2 border-0">Buscar Usuario</button>

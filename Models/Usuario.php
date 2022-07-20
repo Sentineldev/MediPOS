@@ -1,6 +1,6 @@
 <?php
 
-require('./database/database.php');
+require_once('./database/database.php');
 class UsuarioModel{
 
 
@@ -29,6 +29,15 @@ class UsuarioModel{
         $connection = new Database();
         $stmt = $connection->getConnection()->prepare("CALL ExisteUsuarioByID(?)");
         $stmt->bind_param("s",$identificacion);
+        $stmt->execute();
+        $stmt = $stmt->get_result();
+        return $stmt->fetch_assoc();
+    }
+
+    public static function ObtenerUsuarioByUserId($user_id){
+        $connection = new Database();
+        $stmt = $connection->getConnection()->prepare("CALL ObtenerUsuarioByUserId(?)");
+        $stmt->bind_param("i",$user_id);
         $stmt->execute();
         $stmt = $stmt->get_result();
         return $stmt->fetch_assoc();

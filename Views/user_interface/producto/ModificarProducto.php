@@ -52,7 +52,7 @@ if(isset($_POST) && sizeof($_POST) > 0){
                 <form method="POST" id="form-container" class="row g-3">
                     <div class="col-md-4" id="usuario-container"> 
                         <label for="codigo_producto" class="form-label m-1 ">Codigo del Producto</label>
-                        <input type="text" name="codigo_producto" id="codigo_producto" class="form-control p-2" required>
+                        <input maxlength="128" type="text" name="codigo_producto" id="codigo_producto" class="form-control p-2" required>
                     </div>
                     <div id="button-container" class="">
                         <button id="find-button"class=" button btn w-25  mt-4 m-1  p-2 border-0">Registrar Producto</button>

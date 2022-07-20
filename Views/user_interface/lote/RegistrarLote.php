@@ -64,7 +64,7 @@ if(isset($_POST) && sizeof($_POST) > 0){
                     <div class="container-fluid m-0 w-50 p-1 ">
                         <div class="col-md-4 w-100">
                             <label for="codigo_producto" class="form-label m-1">Codigo del Producto</label>
-                            <input type="text" name="codigo_producto" id="codigo_producto" class="form-control p-2" required>
+                            <input max_length="128" type="text" name="codigo_producto" id="codigo_producto" class="form-control p-2" required>
                         </div>
                         <div id="button-container" class="">
                             <button id="find-button"class=" button btn  w-50 mt-4  p-2 border-0">Buscar Producto</button>

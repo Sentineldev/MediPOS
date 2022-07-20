@@ -1,4 +1,6 @@
 import { obtenerUsuarioByID } from "../js/api_user.js";
+import { checkIfInteger } from "../js/utils.js";
+
 const find_button = document.querySelector("#find-button")
 const input_container = document.querySelector("#input-container")
 const form_container = document.querySelector("#form-container")
@@ -8,21 +10,27 @@ find_button.addEventListener("click", async()=>{
     form_container.onsubmit = e =>{
         e.preventDefault()
     }
-    const user = await obtenerUsuarioByID(identificacion)
-    if(user != null){
-        input_container.innerHTML = formModifyUser(user)
-        const modify_button = document.querySelector("#modify-button")
-        modify_button.addEventListener('click',()=>{
-            form_container.submit()
-        })
+    if(checkIfInteger(identificacion)){
+        const user = await obtenerUsuarioByID(identificacion)
+        if(user != null){
+            input_container.innerHTML = formModifyUser(user)
+            const modify_button = document.querySelector("#modify-button")
+            modify_button.addEventListener('click',()=>{
+                form_container.submit()
+            })
+        }
+        else{
+            input_container.innerHTML = `
+            <div class="alert alert-danger col-md-10 mt-4 mb-0 m-1" role="alert">
+                El usuario no existe!
+            </div>
+            `
+        }
     }
     else{
-        input_container.innerHTML = `
-        <div class="alert alert-danger col-md-10 mt-4 mb-0 m-1" role="alert">
-            El usuario no existe!
-        </div>
-        `
+        alert("Ingrese una cedula valida!")
     }
+    
 
 })
 

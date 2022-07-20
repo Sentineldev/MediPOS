@@ -1,35 +1,43 @@
 import { obtenerClienteNatural } from "../js/api.js";
-
+import { checkIfInteger } from "../js/utils.js";
 const form_container = document.querySelector("#form-container")
 const find_button = document.querySelector("#find-button")
 const card_container = document.querySelector("#card-container")
 const user_form = document.querySelector("#user-form")
 
 find_button.addEventListener("click",async()=>{
+    user_form.innerHTML = ""
+    card_container.innerHTML = ""
     const identificacion = document.querySelector("#identificacion").value
     form_container.onsubmit = e =>{
         e.preventDefault()
     }
-    const client = await obtenerClienteNatural(identificacion)
-    card_container.innerHTML = await mostrarClienteNatural(client)
-    if(client != null){
-        user_form.innerHTML = FormUsuario()
-        const button_register = document.querySelector("#button-register")
-        button_register.addEventListener('click',()=>{
-            form_container.submit()
-        })
+    if(checkIfInteger(identificacion)){
+        const client = await obtenerClienteNatural(identificacion)
+        card_container.innerHTML = await mostrarClienteNatural(client)
+        if(client != null){
+            user_form.innerHTML = FormUsuario()
+            const button_register = document.querySelector("#button-register")
+            button_register.addEventListener('click',()=>{
+                form_container.submit()
+            })
+        }
     }
+    else{
+        alert("Ingrese una cedula valida!")
+    }
+    
 })
 
 function FormUsuario(){
     return `
     <div class="col-md-4 w-100 mt-3 mb-2" id="usuario-container">
         <label for="usuario" class="form-label m-0">Usuario</label>
-        <input type="text" name="usuario" id="usuario" class="form-control p-2" required>
+        <input maxlength="64" type="text" name="usuario" id="usuario" class="form-control p-2" required>
     </div>
     <div class="col-md-4 w-100 mb-2" id="clave-container">
         <label for="clave" class="form-label m-0">Clave</label>
-        <input type="password" name="clave" id="clave" class="form-control p-2" required>
+        <input maxlength="128" type="password" name="clave" id="clave" class="form-control p-2" required>
     </div>
     <div class="col-md-4 w-100">
         <label for="rango" class="form-label m-0">Rango</label>

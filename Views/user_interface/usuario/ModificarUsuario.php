@@ -67,7 +67,7 @@ if(isset($_POST) && sizeof($_POST) > 0){
                 <form method="POST" id="form-container" class="row g-3">
                     <div class="col-md-4">
                         <label for="identificacion" class="form-label m-1">Cedula</label>
-                        <input type="text" name="identificacion" id="identificacion" class="form-control p-2" required>
+                        <input maxlength="32" type="text" name="identificacion" id="identificacion" class="form-control p-2" required>
                     </div>
                     <div id="button-container" class="col-12 m-0">
                         <button id="find-button" class="button btn  w-25 mt-4 m-1 p-2 "  type="submit" >Buscar Usuario</button>

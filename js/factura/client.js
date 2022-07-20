@@ -1,6 +1,5 @@
 import { obtenerClienteJuridico,obtenerClienteNatural } from "../js/api.js";
 import { load_components } from "/MediPOS/js/factura/factura.js";
-
 const tipo_cliente =  document.querySelector("#tipo_cliente")
 const identification_container = document.querySelector('#identification-container')
 const find_button = document.querySelector('#find-button')
@@ -147,3 +146,6 @@ async function mostrarClienteNatural(client){
     </div>
     `
 }
+
+
+

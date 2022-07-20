@@ -31,7 +31,7 @@ if(sizeof($_SESSION) == 1){
           include_once('Views/Utils/sidebar.php');
         ?>
         <div id="middle-content" class="container-fluid">
-          <h1 class="display-5">hola mundo</h1>
+          <h1 class="display-5">Bienvenido a MediPOS. Espero tengas una buena jornada de trabajo, Suerte!</h1>
         </div>
       </section> 
     </section>

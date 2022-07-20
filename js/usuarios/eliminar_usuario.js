@@ -1,24 +1,31 @@
 
 
 import { obtenerUsuarioByID } from "../js/api_user.js";
-
+import { checkIfInteger } from "../js/utils.js";
 const find_button = document.querySelector("#find-button")
 const card_container = document.querySelector("#card-container")
 const form_container = document.querySelector("#form-container")
 
 find_button.addEventListener("click",async()=>{
     const identificacion = document.querySelector("#identificacion").value
+    
     form_container.onsubmit = e =>{
         e.preventDefault()
     }
-    let user = await obtenerUsuarioByID(identificacion)
-    card_container.innerHTML = mostrarUsuario(user)
-    if(user != null){
-        const button_delete = document.querySelector("#button-delete")
-        button_delete.addEventListener("click",()=>{
-            form_container.submit()
-        })
+    if(checkIfInteger(identificacion)){
+        let user = await obtenerUsuarioByID(identificacion)
+        card_container.innerHTML = mostrarUsuario(user)
+        if(user != null){
+            const button_delete = document.querySelector("#button-delete")
+            button_delete.addEventListener("click",()=>{
+                form_container.submit()
+            })
+        }
     }
+    else{
+        alert("Ingrese una cedula valida!")
+    }
+    
 })
 
 

@@ -1,5 +1,5 @@
 import { obtenerClienteNatural,obtenerClienteJuridico } from "../js/api.js";
-
+import { checkIfInteger,checkIfString } from "../js/utils.js";
 const tipo_cliente = document.querySelector("#tipo_cliente");
 const identification_container = document.querySelector('#identification-container')
 const find_button = document.querySelector('#find-button')
@@ -37,23 +37,41 @@ tipo_cliente.addEventListener('change',()=>{
 
 //Al hacer click en el boton evita que el formulario sea enviado y carga los datos del cliente.
 find_button.addEventListener('click',async()=>{
+    input_container.innerHTML = ""
     form_container.onsubmit = e =>{
         e.preventDefault()
     }
     const identificacion = document.querySelector('#identificacion').value
-    if(tipo_cliente.value == "Natural" && identificacion != ""){
-        input_container.innerHTML = await mostrarClienteNatural(identificacion)
-    }
-    else if(tipo_cliente.value == "Juridico" && identificacion != ""){
-        input_container.innerHTML = await mostrarClienteJuridico(identificacion)
-    }
 
-    const button_submit = document.querySelector("#button-submit")
-    if(button_submit != null){
-        button_submit.addEventListener('click',()=>{
-            form_container.submit()
-        })
+    if(checkIfInteger(identificacion)){
+        if(tipo_cliente.value == "Natural" && identificacion != ""){
+            input_container.innerHTML = await mostrarClienteNatural(identificacion)
+        }
+        else if(tipo_cliente.value == "Juridico" && identificacion != ""){
+            input_container.innerHTML = await mostrarClienteJuridico(identificacion)
+        }
+    
+        const button_submit = document.querySelector("#button-submit")
+        if(button_submit != null){
+            button_submit.addEventListener('click',()=>{
+                if(tipo_cliente.value == "Natural"){
+                    if(validatePersonaNatural()){
+                        form_container.submit()
+                    }
+                }
+                else if(tipo_cliente.value == "Juridico"){
+                    if(validatePersonaJuridica()){
+                        form_container.submit()
+                    }
+                }
+                
+            })
+        }
     }
+    else{
+        alert("Ingrese una identidad valida!")
+    }
+    
 
 })
 
@@ -76,7 +94,7 @@ async function mostrarClienteNatural(identificacion){
         </div>
         <div class="col-md-4">
             <label for="apellido" class="form-label m-1">Apellido</label>
-            <input value="${client.apellido}" type="text" name="apellido" id="valid-name" class="form-control p-2" required>
+            <input value="${client.apellido}" type="text" name="apellido" id="valid-lastName" class="form-control p-2" required>
         </div>
         <div class="col-md-4">
             <label for="direccion" class="form-label m-1">Direccion</label>
@@ -84,11 +102,11 @@ async function mostrarClienteNatural(identificacion){
         </div>
         <div class="col-md-4">
             <label for="telefono" class="form-label m-1">Telefono</label>
-            <input value="${client.telefono_contacto}" type="text" name="telefono" id="valid-name" class="form-control p-2" required>
+            <input value="${client.telefono_contacto}" type="text" name="telefono" id="valid-telefono" class="form-control p-2" required>
         </div>
         <div class="col-md-4">
             <label for="fecha_nacimiento" class="form-label m-1">Fecha de Nacimiento</label>
-            <input value="${client.fecha_nacimiento}" type="date" name="fecha_nacimiento" id="valid-name" class="form-control p-2" required>
+            <input value="${client.fecha_nacimiento}" type="date" name="fecha_nacimiento" id="valid-fecha_nacimiento" class="form-control p-2" required>
         </div>
         <div class="col-md-4">
             <label for="sexo" class="form-label m-1">Sexo</label>
@@ -141,15 +159,15 @@ async function mostrarClienteJuridico(identificacion){
     
     <div class="col-md-4">
         <label for="direccion" class="form-label m-1">Direccion</label>
-        <input value="${client.direccion}" type="text" name="direccion" id="valid-name" class="form-control p-2" required>
+        <input value="${client.direccion}" type="text" name="direccion" id="valid-direccion" class="form-control p-2" required>
     </div>
     <div class="col-md-4">
         <label for="telefono" class="form-label m-1">Telefono de contacto</label>
-        <input value="${client.telefono_contacto}" type="text" name="telefono"  class="form-control p-2"required >
+        <input value="${client.telefono_contacto}" type="text" name="telefono" id="valid-telefono"  class="form-control p-2"required >
     </div>
     <div class="col-md-4">
         <label for="telefono_empresa" class="form-label m-1">Telefono empresa</label>
-        <input value="${client.telefono_empresa}" type="text" name="telefono_empresa"  class="form-control p-2"required >
+        <input  value="${client.telefono_empresa}" type="text" name="telefono_empresa" id="valid-telefono-empresa"  class="form-control p-2"required >
     </div>
     <div class="col-md-4">
         <label for="correo" class="form-label m-1">Correo</label>
@@ -164,5 +182,59 @@ async function mostrarClienteJuridico(identificacion){
 
     `
 }
+
+
+function validatePersonaNatural(){
+    const valid_name = document.getElementById("valid-name")
+    const valid_lastname = document.getElementById("valid-lastName")
+    const valid_telefono = document.getElementById("valid-telefono")
+
+    if(checkIfString(valid_name.value)){
+        if(checkIfString(valid_lastname.value)){
+            if(checkIfInteger(valid_telefono.value)){
+                return true
+            }
+            else{
+                alert("Ingrese un telefono valido!")
+            }
+        }
+        else{
+            alert("Ingrese un apellido valido!")
+        }
+    }
+    else{
+        alert("Ingrese una nombre valido!")
+    }
+    
+    return false
+}
+
+function validatePersonaJuridica(){
+    const valid_name = document.querySelector("#valid-name")
+    const valid_telefono = document.querySelector("#valid-telefono")
+    const valid_telefono_empresa = document.querySelector("#valid-telefono-empresa")
+
+    console.log(valid_name)
+
+    if(checkIfString(valid_name.value)){
+        if(checkIfInteger(valid_telefono.value)){
+            if(checkIfInteger(valid_telefono_empresa.value)){
+                return true
+            }
+            else{
+                alert("Ingrese un telefono valido")
+            }
+        }
+        else{
+            alert("Ingrese un telefono valido")
+        }
+    }
+    else{
+        alert("Ingrese un nombre valido")
+    }
+    return false
+}
+
+
 
 window.onload = e => tipo_cliente.focus()

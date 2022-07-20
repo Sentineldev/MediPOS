@@ -22,7 +22,7 @@ import {
     HidePaymentMethodModal
 } from "/MediPOS/js/factura/modals.js";
 
-
+import {guardarFactura} from "/MediPOS/js/factura/api_factura.js"
 
 
 
@@ -32,13 +32,61 @@ let products = []
 let factura_info = {
     total: 0,
     restante:0,
-    cancelado:0
+    cancelado:0,
+    products:[],
+    pagos:[]
 }
 
 let pagos = []
 
 
+
+
+
+
+async function ImprimirHnadler(){
+    const factura = JSON.parse(localStorage.getItem("factura"))
+    if(factura.factura_info.restante == 0){
+        if(factura.factura_info.products.length != 0){
+            let request = await guardarFactura(factura)    
+            if(request.status === 200){
+                request = await request.json()
+                localStorage.clear()
+                alert("Facturacion exitosa! :D")
+                window.location.reload()
+            }
+        }
+        else{
+            alert("No se puede imprimir si no hay productos!")
+        }
+    }
+    else{
+        alert("No se puede imprimir sin haber cancelado!")
+    }
+}
+
+function fact_opciones(){
+    update_localStorage()
+    const contenedor = document.querySelector("#fact-opciones")
+
+    
+
+    contenedor.insertAdjacentHTML("afterbegin",`
+
+    <li class="nav-item dropdown">
+        <a id="imprimir-factura" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Imprimir
+        </a>
+    </li>
+
+    `)
+
+    const imprimir_factura = document.querySelector("#imprimir-factura")
+    imprimir_factura.addEventListener("click",ImprimirHnadler)
+}
+//cargar componentes para facturars
 export function load_components(){
+    fact_opciones()
     const middle_content = document.querySelector("#middle-content")
     middle_content.innerHTML = ""
     middle_content.innerHTML = factura_container()
@@ -56,12 +104,15 @@ export function load_components(){
 
 
     const form_button_add_payment = document.querySelector("#btn-add-payment")
-    console.log(form_button_add_payment)
 
     form_button_add_payment.addEventListener("click",AddPaymentHandler)
 }
 
 
+
+
+
+//funciones pra los metodos de pago
 
 
 async function AddPaymentHandler(){
@@ -75,28 +126,31 @@ async function AddPaymentHandler(){
 
 
     form_button_add_payment.addEventListener('click',async()=>{
-        const select_entity = document.querySelector("#select-entity")
         const select_type_payment=document.querySelector("#select-type-payment")
         const amount_input  = document.querySelector("#amount-input")
 
-
-
-        if(select_entity.value == "Entidad" || select_type_payment.value == "Tipo Pago"){
-            alert("Error ingrese la entidad y el tipo de pago!")
+        
+        if(select_type_payment.value == "Tipo de Pago"){
+            alert("Error ingrese el tipo de pago")
+        }
+        else if(Number.isNaN(Number(amount_input.value)) == true){
+            alert("Ingrese solo numeros!")
         }
         else if(Number(amount_input.value) > Number(factura_info.restante)){
             alert("Error el monto recibido no puede ser mayor que el restante!")
         }
         else{
             let pago = {
-                entidad:select_entity.value,
-                tipo_pago:select_type_payment.value,
-                monto:amount_input.value
+                nombre_tipo_pago:select_type_payment.options[select_type_payment.selectedIndex].text,   
+                tipo_pago:Number(select_type_payment.value),
+                monto:Number(amount_input.value)
 
             }
             pagos.push(pago)
             factura_info.cancelado+=Number(pago.monto)
+            factura_info.cancelado = Number(factura_info.cancelado.toFixed(2))
             factura_info.restante=(Number(factura_info.total) - Number(factura_info.cancelado))
+            factura_info.restante = Number(factura_info.restante.toFixed(2))
             factura_info.pagos = pagos
             render_payment_table()
             render_amount_container(factura_info)
@@ -138,12 +192,15 @@ function render_payment_table(){
                 delete_product_confirm.addEventListener("click",async()=>{
                     const payment = pagos.splice(index,1)
                     factura_info.cancelado-=Number(payment[0].monto)
+                    factura_info.cancelado = Number(factura_info.cancelado.toFixed(2))
                     factura_info.restante = (Number(factura_info.total) - Number(factura_info.cancelado))
+                    factura_info.restante = Number(factura_info.restante.toFixed(2))
                     factura_info.pagos = pagos
                     render_payment_table()
                     render_amount_container()
                     update_localStorage()
                     await HideDelProductModal()
+                    
                 })
             })
             const edit_opt = document.querySelector("#edit-opt")
@@ -160,24 +217,20 @@ function render_payment_table(){
                 edit_product_cancel.addEventListener("click",async()=>HideEditProductModal())
                 
                 edit_product_confirm.addEventListener("click",async()=>{
-                    console.log(`${Number(product_amount.value)} - ${Number(factura_info.restante)}`)
-                    if(!(Number(product_amount.value) > Number(factura_info.restante))){
-                        let initial_price = Number(pagos[index].monto)
-                        let final_price = Number(initial_price)-Number(product_amount.value)
-                        pagos[index].monto = product_amount.value
-                        factura_info.cancelado -= Number(final_price) 
-                        factura_info.restante = Number(factura_info.total) - Number(factura_info.cancelado)
-                        factura_info.pagos = pagos
+                    let initial_price = Number(pagos[index].monto)
+                    let final_price = Number(initial_price)-Number(product_amount.value)
+                    pagos[index].monto = Number(product_amount.value)
+                    factura_info.cancelado -= Number(final_price) 
+                    factura_info.cancelado = Number(factura_info.cancelado.toFixed(2))
+                    factura_info.restante =Number(factura_info.total) - Number(factura_info.cancelado)
+                    factura_info.restante = Number(factura_info.restante.toFixed(2))
+                    factura_info.pagos = pagos
 
-                        render_payment_table()
-                        render_amount_container()
-                        update_localStorage()
+                    render_payment_table()
+                    render_amount_container()
+                    update_localStorage()
 
-                        await HideEditProductModal()
-                    }
-                    else{
-                        alert("Monto invalido!")
-                    }
+                    await HideEditProductModal()
                     
 
                 })
@@ -190,6 +243,9 @@ function render_payment_table(){
 }
 
 
+
+
+//funciones para los productos
 async function add_item_to_product_table(e){
     e.preventDefault()
         const codigo_producto = document.querySelector("#codigo_producto")
@@ -205,7 +261,9 @@ async function add_item_to_product_table(e){
         }
 
         factura_info.total+=Number(product.precio)
+        factura_info.total = Number(factura_info.total.toFixed(2))
         factura_info.restante=(Number(factura_info.total) - Number(factura_info.cancelado))
+        factura_info.restante = Number(factura_info.restante.toFixed(2))
         factura_info.products = products
         render_table()
         render_amount_container(factura_info)
@@ -213,12 +271,8 @@ async function add_item_to_product_table(e){
         update_localStorage()
 
         codigo_producto.value = ""
+        console.log(factura_info.total)
 }
-
-
-
-
-
 
 
 function render_table(){
@@ -246,10 +300,11 @@ function render_table(){
                 delete_product_cancel.addEventListener("click",()=>{HideDelProductModal()})
 
                 delete_product_confirm.addEventListener("click",async()=>{
-                    
                     const product = products.splice(index,1)
                     factura_info.total-= product[0].precio * product[0].cantidad
+                    factura_info.total = Number(factura_info.total.toFixed(2))
                     factura_info.restante=(Number(factura_info.total) - Number(factura_info.cancelado))
+                    factura_info.restante = Number(factura_info.restante.toFixed(2))
                     factura_info.products = products
                     render_table()
                     render_amount_container()
@@ -269,17 +324,33 @@ function render_table(){
                 edit_product_cancel.addEventListener("click",async()=> await HideEditProductModal())
                 
                 edit_product_confirm.addEventListener("click",async()=>{
+                    if(product_amount.value == 0){
+                        const product = products.splice(index,1)
+                        factura_info.total-= product[0].precio * product[0].cantidad
+                        factura_info.total = Number(factura_info.total.toFixed(2))
+                        factura_info.restante=(Number(factura_info.total) - Number(factura_info.cancelado))
+                        factura_info.restante = Number(factura_info.restante.toFixed(2))
+                        factura_info.products = products
+                        render_table()
+                        render_amount_container()
+                        update_localStorage()
+                        await HideEditProductModal()
+                    }
+                    else{
+                        let initial_price = (products[index].cantidad * products[index].precio)
+                        let new_price = (Number(product_amount.value)  * products[index].precio)
+                        products[index].cantidad = product_amount.value
+                        factura_info.total -= (initial_price-new_price)
+                        factura_info.total = Number(factura_info.total.toFixed(2))
+                        factura_info.restante =(Number(factura_info.total) - Number(factura_info.cancelado))
+                        factura_info.restante = Number(factura_info.restante.toFixed(2))
+                        factura_info.products = products
+                        render_table()
+                        render_amount_container()
+                        update_localStorage()
+                        await HideEditProductModal()
+                    }
                     
-                    let initial_price = (products[index].cantidad * products[index].precio)
-                    let new_price = (Number(product_amount.value)  * products[index].precio)
-                    products[index].cantidad = product_amount.value
-                    factura_info.total -= (initial_price-new_price)
-                    factura_info.restante = factura_info.restante=(Number(factura_info.total) - Number(factura_info.cancelado))
-                    factura_info.products = products
-                    render_table()
-                    render_amount_container()
-                    update_localStorage()
-                    await HideEditProductModal()
                 })
             })
 

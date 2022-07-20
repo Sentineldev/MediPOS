@@ -3,7 +3,12 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
+    position: inherit;
 }
 h5{
     color: black !important;
+}
+
+@viewport{
+    max-zoom: 125%;
 }

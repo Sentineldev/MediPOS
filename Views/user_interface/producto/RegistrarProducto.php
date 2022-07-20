@@ -65,23 +65,23 @@ if(isset($_POST) && sizeof($_POST) > 0){
                 <form method="POST" id="form-container" class="row g-3 mt-2">
                     <div class="col-md-4" id="usuario-container"> 
                         <label for="codigo_producto" class="form-label m-1 ">Codigo del Producto</label>
-                        <input type="text" name="codigo_producto" id="codigo_producto" class="form-control p-2" required>
+                        <input maxlength="128" type="text" name="codigo_producto" id="codigo_producto" class="form-control p-2" required>
                     </div>
                     <div class="col-md-4" id="usuario-container"> 
                         <label for="descripcion" class="form-label m-1 ">Descripcion</label>
-                        <input type="text" name="descripcion" id="descripcion" class="form-control p-2" required>
+                        <input maxlength="128" type="text" name="descripcion" id="descripcion" class="form-control p-2" required>
                     </div>
                     <div class="col-md-4" id="usuario-container"> 
                         <label for="presentacion" class="form-label m-1 ">Presentacion</label>
-                        <input type="text" name="presentacion" id="presentacion" class="form-control p-2" required>
+                        <input maxlength="64" type="text" name="presentacion" id="presentacion" class="form-control p-2" required>
                     </div>
                     <div class="col-md-4" id="usuario-container"> 
                         <label for="cantidad" class="form-label m-1 ">Cantidad</label>
-                        <input type="number" name="cantidad" id="cantidad" class="form-control p-2" required>
+                        <input  type="number" name="cantidad" id="cantidad" class="form-control p-2" required>
                     </div>
                     <div class="col-md-4" id="usuario-container"> 
                         <label for="precio" class="form-label m-1 ">Precio</label>
-                        <input type="number" step="0.01" name="precio" id="precio" class="form-control p-2" required>
+                        <input type="number" step="0.0001" name="precio" id="precio" class="form-control p-2" required>
                     </div>
                     <div id="button-container" class="">
                         <button id="button-register"class=" button btn w-25  mt-4 m-1  p-2 border-0">Registrar Usuario</button>

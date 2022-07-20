@@ -10,14 +10,17 @@ const card_container = document.querySelector("#card-container")
 find_button.addEventListener("click",async()=>{
     const num_lote = document.querySelector("#num_lote").value
     form_container.onsubmit = e => e.preventDefault()
-    let lote = await obtenerLote(num_lote)
-    card_container.innerHTML = productForm(lote)
-    if(lote != null){
-        const button_delete = document.querySelector("#button-delete")
-        button_delete.addEventListener("click",()=>{
-            form_container.submit()
-        })
+    if(num_lote != ""){
+        let lote = await obtenerLote(num_lote)
+        card_container.innerHTML = productForm(lote)
+        if(lote != null){
+            const button_delete = document.querySelector("#button-delete")
+            button_delete.addEventListener("click",()=>{
+                form_container.submit()
+            })
+        }
     }
+    
 })
 
 

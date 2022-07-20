@@ -9,19 +9,28 @@ const card_container = document.querySelector("#card-container")
 find_button.addEventListener("click",async()=>{
     const num_lote = document.querySelector("#num_lote").value
     form_container.onsubmit = e => e.preventDefault()
-    let lote = await obtenerLote(num_lote)
-    if(lote != null){
-        lote_form.innerHTML = loteForm(lote)
-        card_container.innerHTML = productForm(lote)
-        const button_modify = document.querySelector("#button-modify")
-        button_modify.addEventListener("click",()=>{
-            form_container.submit()
-        })
+    if(num_lote != ""){
+        let lote = await obtenerLote(num_lote)
+        if(lote != null){
+            lote_form.innerHTML = loteForm(lote)
+            card_container.innerHTML = productForm(lote)
+            const button_modify = document.querySelector("#button-modify")
+            button_modify.addEventListener("click",()=>{
+                const cantidad = document.querySelector("#cantidad")
+                const precio = document.querySelector("#precio")
+                if(cantidad.value != ""){
+                    if(precio.value != ""){
+                        form_container.submit()
+                    }
+                }
+            })
+        }
+        else{
+            lote_form.innerHTML = ""
+            card_container.innerHTML = productForm(null)
+        }
     }
-    else{
-        lote_form.innerHTML = ""
-        card_container.innerHTML = productForm(null)
-    }
+    
 })
 
 
@@ -53,7 +62,7 @@ function loteForm(lote){
     return `
     <div class="col-md-4 w-100 mt-3 mb-2" id="usuario-container">
         <label for="cantidad" class="form-label m-0">Cantidad</label>
-        <input value="${lote.cantidad_lote}" type="text" name="cantidad" id="cantidad" class="form-control p-2" required>
+        <input value="${lote.cantidad_lote}" type="number" name="cantidad" id="cantidad" class="form-control p-2" required>
     </div> 
     <div class="col-md-4 w-100 mb-2" id="clave-container">
         <label for="precio" class="form-label m-0">Precio</label>

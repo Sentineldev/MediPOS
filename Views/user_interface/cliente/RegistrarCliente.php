@@ -106,7 +106,12 @@ include('./Classes/ClienteJuridico.php');
 <script>
     <?php
     include('boostrap/js/bootstrap.bundle.js');
+    ?>
+</script>
+<script type="module">
+    <?php
     include('js/clientes/registro_cliente.js');
     ?>
 </script>
+
 </html>

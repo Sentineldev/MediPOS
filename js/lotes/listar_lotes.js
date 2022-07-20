@@ -18,7 +18,7 @@ function asignarEventoCarga(){
     childs.forEach((element,index) => {
         element.addEventListener("click",async (e)=>{
             e.preventDefault()
-            await tablaUsuarios(index+1)
+            await tablaLotes(index+1)
         })
     });
 }

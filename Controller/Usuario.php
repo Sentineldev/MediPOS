@@ -38,6 +38,9 @@ class UsuarioController{
     public static function ObtenerUsuarioById($identificacion){
         return UsuarioModel::ObtenerUsuarioById($identificacion);
     }
+    public static function ObtenerUsuarioByUserId($user_id){
+        return UsuarioModel::ObtenerUsuarioByUserId($user_id);
+    }
 
     public static function ObtenerCantidadUsuarios(){
         return UsuarioModel::ObtenerCantidadUsuarios();

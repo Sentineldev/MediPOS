@@ -111,5 +111,8 @@ get('/lote/obtener_lote/$numero_lote','api/lotes/ObtenerLote.php');
 get('/lote/obtener_lotes_por_pagina/$pagina','api/lotes/LotesPorPagina.php');
 get('/lote/obtener_cantidad_lotes','api/lotes/ObtenerCantidadLotes.php');
 
+#Direcciones para guardar la factura
+post("/factura/guardar_factura",'api/Factura/GuardarFactura.php')
+
 #any('/404','Views/404.php');
 ?>

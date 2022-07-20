@@ -54,7 +54,7 @@ if(isset($_POST) && sizeof($_POST) > 0){
                     <div class="container-fluid m-0 w-50 p-1 ">
                         <div class="col-md-4 w-100">
                             <label for="num_lote" class="form-label m-1">Numero de Lote</label>
-                            <input type="text" name="num_lote" id="num_lote" class="form-control p-2" required>
+                            <input type="number" name="num_lote" id="num_lote" class="form-control p-2" required>
                         </div>
                         <div id="button-container" class="">
                             <button id="find-button"class=" button btn  w-50 mt-4  p-2 border-0">Buscar Lote</button>
