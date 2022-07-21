@@ -119,6 +119,7 @@ async function AddPaymentHandler(){
     
     await showPaymentMethodModal()
 
+    const modal_payment_method = document.querySelector("#model-form")
     const form_button_add_payment = document.querySelector("#form-btn-add-payment")
     const form_btn_close_modal = document.querySelector("#form-btn-close-modal")
 

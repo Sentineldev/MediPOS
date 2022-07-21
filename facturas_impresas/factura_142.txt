@@ -1,0 +1,18 @@
+		Farmacia DelValle
+Telefono: 02952421768
+Direccion: La asuncion escudo de armas
+REF: 142
+Operador: Suhail  Zabala
+Nombre: Ingrith 
+RIF/CEDULA: 11855543
+-----------------------------------------------------------------------------------
+Papitas Fritas
+3 X 6
+Acetaminofen
+10.5 X 1
+-----------------------------------------------------------------------------------
+Total Cancelado: 28.5
+-----------------------------------------------------------------------------------
+Solo - Efectivo: 15
+Otros - Debito: 3.5
+Otros - Credito: 10

@@ -33,7 +33,14 @@ $_SESSION['folder'] = $_SERVER['DOCUMENT_ROOT']."/MediPOS/".""
                     $user = UsuarioController::ObtenerUsuario($username,$password)->fetch_assoc();
                     $_SESSION['user'] = $user;
                     header('Location: '.$_SESSION['url']."user/home");
-                }                
+                }
+                else{
+                    echo(
+                        "<script>
+                        alert('Usuario Invalido')
+                        </script>"
+                    );
+                }               
                 
             }
 

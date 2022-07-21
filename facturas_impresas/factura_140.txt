@@ -1,0 +1,16 @@
+		Farmacia DelValle
+Telefono: 02952421768
+Direccion: La asuncion escudo de armas
+REF: 140
+Operador: Ulises Jose Hernandez Mora
+Nombre: Jesus
+RIF/CEDULA: 29660012
+-----------------------------------------------------------------------------------
+Loratadina
+50 X 2
+Acetaminofen
+10.5 X 1
+-----------------------------------------------------------------------------------
+Total Cancelado: 110.5
+-----------------------------------------------------------------------------------
+Banco de Venezuela - Debito: 110.5

@@ -76,7 +76,12 @@ export async function showPaymentMethodModal(){
         focus:false,
         backdrop:true
     })
+    
+    
     await modal_payment_method.show()
+    const form = document.querySelector("#model-form")
+    form.onsubmit = e => e.preventDefault()
+
 }
 
 export async function HidePaymentMethodModal(){
@@ -165,6 +170,7 @@ export async function showOptModal(){
         backdrop:true
     })
     await opt_modal.show()
+    
 }
 export async function HideOptModal(){
     const modal = document.querySelector("#option-modal")
@@ -200,6 +206,8 @@ export async function showEditProductModal(){
         focus:false
     })
     await edit_product_modal.show()
+    const form = document.querySelector("#model-form")
+    form.onsubmit = e => e.preventDefault()
 }
 export async function HideEditProductModal(){
     const modal = document.querySelector("#edit-product-modal")
